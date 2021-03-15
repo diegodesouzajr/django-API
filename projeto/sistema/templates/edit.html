@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro de Usuário</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+<form method="POST" class="post-form" action="/update/{{usuario.usuario_id}}">
+    {% csrf_token %}
+    <div class="container">
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+                <h3>Parâmetros</h3>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Nome:</label>
+            <div class="col-sm-4">
+                <input type="text" name="nome" id="id_nome" required maxlength="100" value="{{ usuario.nome }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-4">
+                <input type="email" name="email" id="id_email" required maxlength="100" value="{{ usuario.email }}" />
+            </div>
+        </div>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Senha:</label>
+            <div class="col-sm-4">
+                <input type="password" name="senha" id="id_senha" required maxlength="100" value="{{ usuario.senha }}" />
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">CPF:</label>
+            <div class="col-sm-4">
+                <input type="text" name="cpf" id="id_cpf" required maxlength="11" value="{{ usuario.cpf }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">PIS:</label>
+            <div class="col-sm-4">
+                <input type="text" name="pis" id="id_pis" required maxlength="11" value="{{ usuario.pis }}" />
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">País:</label>
+            <div class="col-sm-4">
+                <input type="text" name="pais" id="id_pais"  maxlength="100" value="{{ usuario.pais|default_if_none:'' }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Estado:</label>
+            <div class="col-sm-4">
+                <input type="text" name="estado" id="id_estado"  maxlength="100" value="{{ usuario.estado|default_if_none:'' }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Cidade:</label>
+            <div class="col-sm-4">
+                <input type="text" name="cidade" id="id_cidade"  maxlength="100" value="{{ usuario.cidade|default_if_none:'' }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Rua:</label>
+            <div class="col-sm-4">
+                <input type="text" name="rua" id="id_rua"  maxlength="100" value="{{ usuario.rua|default_if_none:'' }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Númenro:</label>
+            <div class="col-sm-4">
+                <input type="text" name="numero" id="id_numero"  maxlength="100" value="{{ usuario.numero|default_if_none:'' }}" />
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Complemento:</label>
+            <div class="col-sm-4">
+                <input type="text" name="complemento" id="id_complemento"  maxlength="100" value="{{ usuario.complemento|default_if_none:'' }}" />
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-success">Atualizar</button>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+</html>
