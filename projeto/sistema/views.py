@@ -57,10 +57,13 @@ def update(request, id):
     if form.is_valid():
         form.save()
 
-        if request.POST['cpf'] and request.POST['senha']:
-            user = User.objects.get(username=request.POST['cpf'])
-            user.set_password(request.POST['senha'])
-            user.save()
+        try:
+            if request.POST['cpf'] and request.POST['senha']:
+                user = User.objects.get(username=request.POST['cpf'])
+                user.set_password(request.POST['senha'])
+                user.save()
+        except:
+            pass
 
         return redirect("/show")
     return render(request, 'edit.html', {'usuario': usuario})
@@ -78,7 +81,19 @@ def cadastro(request):
         if form.is_valid():
             try:
                 form.save()
-                return render(request, 'menu.html')
+
+                request_form = {
+                    'username': request.POST.get('cpf'),
+                    'email': request.POST.get('email'),
+                    'password1': request.POST.get('senha'),
+                    'password2': request.POST.get('senha'),
+                }
+
+                form_auth_user = UserCreationForm(request_form)
+
+                if form_auth_user.is_valid():
+                    form_auth_user.save()
+                return render(request, 'login.html')
             except:
                 pass
     else:
